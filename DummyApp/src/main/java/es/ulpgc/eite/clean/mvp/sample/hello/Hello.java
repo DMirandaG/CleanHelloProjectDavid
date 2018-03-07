@@ -67,6 +67,11 @@ public interface Hello {
    */
   interface PresenterToModel extends Model<ModelToPresenter> {
     void startHelloGetMessageTask();
+
+    boolean isTaskRunning();
+
+    boolean isTaskFinished();
+
     //boolean isNumOfTimesCompleted();
     //void changeMsgByBtnClicked();
     String getText();

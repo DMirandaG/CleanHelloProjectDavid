@@ -54,11 +54,11 @@ public class HelloModel
 
   @Override
   public void startHelloGetMessageTask() {
-    if(taskRunning){
+    if(isTaskRunning()){
       return;
     }
 
-    if(taskFinished) {
+    if(isTaskFinished()) {
       getPresenter().onHelloGetMessageTaskFinished(msgText);
     } else {
       taskRunning = true;
@@ -71,7 +71,7 @@ public class HelloModel
     new Handler().postDelayed(new Runnable() {
       @Override
       public void run() {
-        if(taskRunning) {
+        if(isTaskRunning()) {
           getPresenter().onHelloGetMessageTaskFinished(msgText);
           taskRunning = false;
           taskFinished = true;
@@ -79,6 +79,17 @@ public class HelloModel
 
       }
     }, 10000);
+  }
+
+  @Override
+  public boolean isTaskRunning() {
+    return taskRunning;
+  }
+
+  @Override
+  public boolean isTaskFinished() {
+
+    return taskFinished;
   }
 
   /*
