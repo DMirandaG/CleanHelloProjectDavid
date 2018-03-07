@@ -44,6 +44,7 @@ public interface Hello {
   interface ViewToPresenter extends Presenter<PresenterToView> {
     //void onButtonClicked();
     void onSayHelloBtnClicked();
+    void onGoToByeBtnClicked();
   }
 
   /**

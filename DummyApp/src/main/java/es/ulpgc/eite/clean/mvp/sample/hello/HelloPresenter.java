@@ -129,6 +129,11 @@ public class HelloPresenter
     }
   }
 
+  @Override
+  public void onGoToByeBtnClicked() {
+    // TODO: 7/3/18 implementar funcionalidad
+  }
+
 
   /*
   @Override

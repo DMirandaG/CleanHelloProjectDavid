@@ -37,7 +37,7 @@ public class HelloView
     btnGoToBye.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().onButtonClicked();
+        getPresenter().onGoToByeBtnClicked();
       }
     });
 
