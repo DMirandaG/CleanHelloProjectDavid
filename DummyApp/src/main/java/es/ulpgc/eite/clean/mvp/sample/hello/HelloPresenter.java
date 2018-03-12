@@ -2,7 +2,6 @@ package es.ulpgc.eite.clean.mvp.sample.hello;
 
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.Log;
 
 import es.ulpgc.eite.clean.mvp.ContextView;
@@ -101,10 +100,13 @@ public class HelloPresenter
     if(isViewRunning()) {
       // pasar el texto a la vista  (aplicar estado)
       getView().setText(text);
+
       // hacer visible el texto (aplicar estado)
       getView().showText();
+
       // hacer invisible el progress bar (aplicar estado)
       getView().hideProgressBar();
+
       // actualizar estado (fijar estado)
       textVisible = true;
       progressBarVisible = false;
@@ -120,15 +122,13 @@ public class HelloPresenter
 
     if (isViewRunning()) {
 
-      //OTRA FORMA DE HACERLO
+      buttonClicked = true;
 
-      /*
-      new Handler().postDelayed(new Runnable() {
-        @Override
-        public void run() {
-          getModel().startHelloGetMessageTask();
-        }
-      }, 10000);*/
+      if (textVisible) {
+        getView().hideText();
+
+        textVisible = false;
+      }
 
       // pedir el texto al modelo asíncronamente
       // al finalizar el modelo llamará a onHelloGetMessageTaskFinished()
@@ -136,8 +136,9 @@ public class HelloPresenter
 
       // hacer visible el progress bar (aplicar estado)
       getView().showProgressBar();
+
       // actualizar estado (fijar estado)
-      buttonClicked = true;
+
       progressBarVisible = true;
 
     }
@@ -145,7 +146,8 @@ public class HelloPresenter
 
   @Override
   public void onGoToByeBtnClicked() {
-    // TODO: 7/3/18 implementar funcionalidad
+
+    // pedir al mediador que inicie la pantalla de bye
   }
 
 

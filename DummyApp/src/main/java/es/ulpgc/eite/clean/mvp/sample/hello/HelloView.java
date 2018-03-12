@@ -87,7 +87,7 @@ public class HelloView
 
   @Override
   public void hideProgressBar() {
-    progressBar.setVisibility(View.VISIBLE);
+    progressBar.setVisibility(View.INVISIBLE);
   }
 
   @Override
@@ -97,12 +97,12 @@ public class HelloView
 
   @Override
   public void hideToolbar() {
-    toolbar.setVisibility(View.VISIBLE);
+    toolbar.setVisibility(View.GONE);
   }
 
   @Override
   public void hideText() {
-    text.setVisibility(View.VISIBLE);
+    text.setVisibility(View.INVISIBLE);
   }
 
   @Override

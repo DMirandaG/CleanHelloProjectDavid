@@ -20,7 +20,10 @@ public interface Mediator {
 
   interface Navigation {
     void goToNextScreen(Dummy.DummyTo presenter);
-    void backToPreviousScreen(Dummy.DummyTo presenter);
+
+      void goToByeScreen(Hello.DummyTo presenter);
+
+      void backToPreviousScreen(Dummy.DummyTo presenter);
 
     void backToPreviousScreen(Hello.DummyTo presenter);
     void goToNextScreen(Hello.DummyTo presenter);
