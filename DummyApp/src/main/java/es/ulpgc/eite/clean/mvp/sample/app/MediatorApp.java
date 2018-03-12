@@ -15,7 +15,7 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
   protected final String TAG = this.getClass().getSimpleName();
 
   private DummyState toDummyState, dummyToState;
-  private HelloState toHelloState;
+  private HelloState toHelloState, helloToByeState;
 
   @Override
   public void onCreate() {
@@ -148,6 +148,24 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
 
   }
 
+
+  @Override
+  public void goToByeScreen(Hello.DummyTo presenter) {
+    Log.d(TAG, "calling savingUpdatedState()");
+    helloToByeState = new HelloState();
+    helloToByeState.toolbarVisibility = presenter.isToolbarVisible();
+    //helloToByeState.textVisibility = presenter.isTextVisible();
+    helloToByeState.textVisibility = false;
+
+    Context view = presenter.getManagedContext();
+    if (view != null) {
+      Log.d(TAG, "calling startingNextScreen()");
+      view.startActivity(new Intent(view, DummyView.class)); // TODO: 7/3/18
+      //Log.d(TAG, "calling finishingCurrentScreen()");
+      //presenter.destroyView();
+    }
+
+  }
 
   // Dummy Screen
 
