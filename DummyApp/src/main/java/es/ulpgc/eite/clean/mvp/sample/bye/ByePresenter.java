@@ -1,4 +1,4 @@
-package es.ulpgc.eite.clean.mvp.sample.hello;
+package es.ulpgc.eite.clean.mvp.sample.bye;
 
 
 import android.content.Context;
@@ -9,10 +9,10 @@ import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.GenericPresenter;
 import es.ulpgc.eite.clean.mvp.sample.app.Mediator;
 
-public class HelloPresenter
+public class ByePresenter
     extends GenericPresenter
-    <Hello.PresenterToView, Hello.PresenterToModel, Hello.ModelToPresenter, HelloModel>
-    implements Hello.ViewToPresenter, Hello.ModelToPresenter, Hello.DummyTo, Hello.ToDummy {
+    <Bye.PresenterToView, Bye.PresenterToModel, Bye.ModelToPresenter, ByeModel>
+    implements Bye.ViewToPresenter, Bye.ModelToPresenter, Bye.DummyTo, Bye.ToDummy {
 
   private boolean toolbarVisible, buttonClicked, textVisible, progressBarVisible;
 
@@ -25,8 +25,8 @@ public class HelloPresenter
    * @param view The current VIEW instance
    */
   @Override
-  public void onCreate(Hello.PresenterToView view) {
-    super.onCreate(HelloModel.class, this);
+  public void onCreate(Bye.PresenterToView view) {
+    super.onCreate(ByeModel.class, this);
     setView(view);
     Log.d(TAG, "calling onCreate()");
 
@@ -51,7 +51,7 @@ public class HelloPresenter
    * @param view The current VIEW instance
    */
   @Override
-  public void onResume(Hello.PresenterToView view) {
+  public void onResume(Bye.PresenterToView view) {
     setView(view);
     Log.d(TAG, "calling onResume()");
 
@@ -147,11 +147,16 @@ public class HelloPresenter
   @Override
   public void onGoToByeBtnClicked() {
 
+  }
+
+  @Override
+  public void onGoToHelloBtnClicked() {
+
     // pedir al mediador que inicie la pantalla de bye
     if (isViewRunning()) {
 
       Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
-      mediator.goToByeScreen(this);
+      mediator.goToHelloScreen(this);
 
     }
   }
