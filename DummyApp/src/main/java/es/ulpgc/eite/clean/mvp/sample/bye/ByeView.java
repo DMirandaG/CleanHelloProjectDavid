@@ -17,36 +17,36 @@ public class ByeView
     implements Bye.PresenterToView {
 
   private Toolbar toolbar;
-  private Button btnGoToBye, btnSayHello;
+  private Button btnBackToHello, btnSayBye;
   private TextView text;
   private ProgressBar progressBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_hello);
+    setContentView(R.layout.activity_bye);
     Log.d(TAG, "calling onCreate()");
 
-    text = (TextView) findViewById(R.id.txtHello);
-    progressBar = (ProgressBar) findViewById(R.id.pbHello);
+    text = (TextView) findViewById(R.id.txtBye);
+    progressBar = (ProgressBar) findViewById(R.id.pbBye);
 
     toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    btnGoToBye = (Button) findViewById(R.id.btnGoToBye);
-    btnGoToBye.setOnClickListener(new View.OnClickListener() {
+    btnBackToHello = (Button) findViewById(R.id.btnBackToHello);
+    btnBackToHello.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().onGoToHelloBtnClicked();
+        getPresenter().onBackToHelloBtnClicked();
       }
     });
 
 
-    btnSayHello = (Button) findViewById(R.id.btnSayHello);
-    btnSayHello.setOnClickListener(new View.OnClickListener() {
+    btnSayBye = (Button) findViewById(R.id.btnSayBye);
+    btnSayBye.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().onSayHelloBtnClicked();
+        getPresenter().onSayByeBtnClicked();
       }
     });
 
@@ -60,7 +60,7 @@ public class ByeView
   @SuppressLint("MissingSuperCall")
   @Override
   protected void onResume() {
-    super.onResume(HelloPresenter.class, this);
+    super.onResume(ByePresenter.class, this);
   }
 
   @Override
@@ -116,13 +116,13 @@ public class ByeView
   }
 
   @Override
-  public void setSayHelloLabel(String txt) {
-    btnSayHello.setText(txt);
+  public void setSayByeLabel(String txt) {
+    btnSayBye.setText(txt);
   }
 
 
   @Override
-  public void setGoToByeLabel(String txt) {
-    btnGoToBye.setText(txt);
+  public void setBackToHelloLabel(String txt) {
+    btnBackToHello.setText(txt);
   }
 }

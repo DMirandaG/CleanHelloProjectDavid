@@ -9,11 +9,7 @@ import es.ulpgc.eite.clean.mvp.GenericModel;
 public class HelloModel
     extends GenericModel<Hello.ModelToPresenter> implements Hello.PresenterToModel {
 
-
-  //private String dummyText;
   private String sayHelloLabel, goToByeLabel;
-  //private int numOfTimes;
-  //private int maxNumOfTimes;
   private String msgText;
   private boolean taskRunning = false;
   private boolean taskFinished = false;
@@ -31,9 +27,7 @@ public class HelloModel
 
     sayHelloLabel = "Say Hello";
     goToByeLabel = "Go To Bye!";
-    //dummyText = "";
     msgText = "Hello World !";
-    //maxNumOfTimes = 3;
   }
 
   /**
@@ -78,7 +72,7 @@ public class HelloModel
         }
 
       }
-    }, 10000);
+    }, 5000);
   }
 
   @Override
@@ -92,31 +86,6 @@ public class HelloModel
     return taskFinished;
   }
 
-  /*
-  @Override
-  public boolean isNumOfTimesCompleted() {
-    if(numOfTimes == maxNumOfTimes) {
-      return true;
-    }
-    return false;
-  }
-
-  @Override
-  public void changeMsgByBtnClicked() {
-    msgText = dummyText;
-    if(numOfTimes > 0) {
-      msgText += ", " + (numOfTimes + 1) + " times";
-    }
-    numOfTimes++;
-  }
-
-
-  @Override
-  public void resetMsgByBtnClicked() {
-    numOfTimes = 1;
-    msgText = dummyText;
-  }
-  */
 
   @Override
   public String getText() {

@@ -11,8 +11,8 @@ import es.ulpgc.eite.clean.mvp.sample.app.Mediator;
 
 public class HelloPresenter
     extends GenericPresenter
-    <Hello.PresenterToView, Hello.PresenterToModel, Hello.ModelToPresenter, HelloModel>
-    implements Hello.ViewToPresenter, Hello.ModelToPresenter, Hello.DummyTo, Hello.ToDummy {
+      <Hello.PresenterToView, Hello.PresenterToModel, Hello.ModelToPresenter, HelloModel>
+    implements Hello.ViewToPresenter, Hello.ModelToPresenter, Hello.HelloToBye, Hello.ToHello {
 
   private boolean toolbarVisible, buttonClicked, textVisible, progressBarVisible;
 
@@ -29,13 +29,6 @@ public class HelloPresenter
     super.onCreate(HelloModel.class, this);
     setView(view);
     Log.d(TAG, "calling onCreate()");
-
-    /*
-    toolbarVisible = false;
-    buttonClicked = false;
-    textVisible = false;
-    progressBarVisible = false;
-    */
 
     Log.d(TAG, "calling startingScreen()");
     Mediator.Lifecycle mediator = (Mediator.Lifecycle) getApplication();
@@ -67,9 +60,6 @@ public class HelloPresenter
   public void onBackPressed() {
     Log.d(TAG, "calling onBackPressed()");
 
-    Log.d(TAG, "calling backToPreviousScreen()");
-    Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
-    mediator.backToPreviousScreen(this);
   }
 
   /**
@@ -104,12 +94,17 @@ public class HelloPresenter
       // hacer visible el texto (aplicar estado)
       getView().showText();
 
-      // hacer invisible el progress bar (aplicar estado)
-      getView().hideProgressBar();
-
       // actualizar estado (fijar estado)
       textVisible = true;
-      progressBarVisible = false;
+
+      if (progressBarVisible) {
+        // hacer invisible el progress bar (aplicar estado)
+        getView().hideProgressBar();
+
+        // actualizar estado (fijar estado)
+        progressBarVisible = false;
+      }
+
     }
   }
 
@@ -122,6 +117,10 @@ public class HelloPresenter
 
     if (isViewRunning()) {
 
+      if(buttonClicked) {
+        /// TODO: 13/3/18  Volver a solicitar datos async al modelo ?
+      }
+
       buttonClicked = true;
 
       if (textVisible) {
@@ -131,15 +130,17 @@ public class HelloPresenter
       }
 
       // pedir el texto al modelo asíncronamente
-      // al finalizar el modelo llamará a onHelloGetMessageTaskFinished()
+      // al finalizar el modelo llamará a onByeGetMessageTaskFinished()
       getModel().startHelloGetMessageTask();
 
-      // hacer visible el progress bar (aplicar estado)
-      getView().showProgressBar();
+      if(!progressBarVisible) {
 
-      // actualizar estado (fijar estado)
+        // hacer visible el progress bar (aplicar estado)
+        getView().showProgressBar();
 
-      progressBarVisible = true;
+        // actualizar estado (fijar estado)
+        progressBarVisible = true;
+      }
 
     }
   }
@@ -148,12 +149,10 @@ public class HelloPresenter
   public void onGoToByeBtnClicked() {
 
     // pedir al mediador que inicie la pantalla de bye
-    if (isViewRunning()) {
 
-      Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
-      mediator.goToByeScreen(this);
-
-    }
+    Log.d(TAG, "calling startingScreen()");
+    Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
+    mediator.goToByeScreen(this);
   }
 
 
@@ -199,7 +198,7 @@ public class HelloPresenter
 
 
   ///////////////////////////////////////////////////////////////////////////////////
-  // To Hello //////////////////////////////////////////////////////////////////////
+  // To Bye //////////////////////////////////////////////////////////////////////
 
   @Override
   public void onScreenStarted() {
@@ -227,9 +226,14 @@ public class HelloPresenter
     }
   }
 
+  @Override
+  public String getText() {
+    return getModel().getText();
+  }
+
 
   ///////////////////////////////////////////////////////////////////////////////////
-  // Hello To //////////////////////////////////////////////////////////////////////
+  // Bye To //////////////////////////////////////////////////////////////////////
 
 
   @Override
@@ -276,6 +280,8 @@ public class HelloPresenter
     if (isViewRunning()) {
       if (!progressBarVisible) {
         getView().hideProgressBar();
+      } else {
+        getView().showProgressBar();
       }
     }
   }

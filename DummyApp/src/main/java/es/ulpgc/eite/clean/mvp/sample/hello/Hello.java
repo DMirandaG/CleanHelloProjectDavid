@@ -21,18 +21,19 @@ public interface Hello {
     void setTextVisibility(boolean visible);
   }
 
-  interface ToDummy extends State {
+  interface ToHello extends State {
     void onScreenStarted();
     void setProgressBarVisibility(boolean visible);
     void setButtonClicked(boolean clicked);
   }
 
-  interface DummyTo extends State{
+  interface HelloToBye extends State{
     Context getManagedContext();
     void destroyView();
     boolean isToolbarVisible();
     boolean isTextVisible();
     void onScreenResumed();
+    String getText();
   }
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -67,16 +68,10 @@ public interface Hello {
    */
   interface PresenterToModel extends Model<ModelToPresenter> {
     void startHelloGetMessageTask();
-
     boolean isTaskRunning();
-
     boolean isTaskFinished();
-
-    //boolean isNumOfTimesCompleted();
-    //void changeMsgByBtnClicked();
     String getText();
     String getSayHelloLabel();
-    //void resetMsgByBtnClicked();
     String getGoToByeLabel();
   }
 

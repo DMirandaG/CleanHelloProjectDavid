@@ -11,11 +11,10 @@ import es.ulpgc.eite.clean.mvp.sample.hello.Hello;
 public interface Mediator {
 
   interface Lifecycle {
-    void startingScreen(Hello.ToDummy presenter);
-    void resumingScreen(Hello.DummyTo presenter);
+    void startingScreen(Bye.HelloToBye presenter);
 
-    void startingScreen(Bye.ToDummy presenter);
-    void resumingScreen(Bye.DummyTo presenter);
+    void startingScreen(Hello.ToHello presenter);
+    void resumingScreen(Hello.HelloToBye presenter);
 
     void startingScreen(Dummy.ToDummy presenter);
     void resumingScreen(Dummy.DummyTo presenter);
@@ -26,15 +25,8 @@ public interface Mediator {
     void goToNextScreen(Dummy.DummyTo presenter);
     void backToPreviousScreen(Dummy.DummyTo presenter);
 
+    void goToByeScreen(Hello.HelloToBye presenter);
 
-    void goToByeScreen(Hello.DummyTo presenter);
-    void backToPreviousScreen(Hello.DummyTo presenter);
-
-    void goToHelloScreen(Bye.DummyTo presenter);
-    void backToPreviousScreen(Bye.DummyTo presenter);
-
-    //void goToNextScreen(Hello.DummyTo presenter);
-
-
+    void goToHelloScreen(Bye.ByeToHello presenter);
   }
 }

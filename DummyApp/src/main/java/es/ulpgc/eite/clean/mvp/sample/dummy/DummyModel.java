@@ -28,7 +28,7 @@ public class DummyModel
     Log.d(TAG, "calling onCreate()");
 
     dummyLabel = "Click Me!";
-    dummyText = "Hello World!";
+    dummyText = "Bye World!";
     maxNumOfTimes = 3;
   }
 
