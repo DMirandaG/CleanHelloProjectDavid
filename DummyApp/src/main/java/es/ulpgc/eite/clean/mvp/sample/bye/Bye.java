@@ -13,80 +13,79 @@ import es.ulpgc.eite.clean.mvp.Presenter;
 public interface Bye {
 
 
-  ///////////////////////////////////////////////////////////////////////////////////
-  // State /////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////
+    // State /////////////////////////////////////////////////////////////////////////
 
-  interface State {
-    void setToolbarVisibility(boolean visible);
-    void setTextVisibility(boolean visible);
-  }
+    interface State {
+        void setToolbarVisibility(boolean visible);
+        void setTextVisibility(boolean visible);
+    }
 
-  interface HelloToBye extends State {
-    void onScreenStarted();
-    void setProgressBarVisibility(boolean visible);
-    void setButtonClicked(boolean clicked);
-    void setHelloTextVisibility(boolean visible);
-    void setHelloText(String textHello);
-  }
+    interface HelloToBye extends State {
+        void onScreenStarted();
+        void setProgressBarVisibility(boolean visible);
+        void setButtonClicked(boolean clicked);
+        void setHelloTextVisibility(boolean visible);
+        void setHelloText(String textHello);
+    }
 
-  interface ByeToHello extends State{
-    Context getManagedContext();
-    void destroyView();
-    boolean isToolbarVisible();
-    boolean isTextVisible();
-    void onScreenResumed();
+    interface ToBye {
+        void onScreenResumed();
+    }
 
-    String getText();
-  }
+    interface ByeToHello extends State {
+        Context getManagedContext();
+        void destroyView();
+        boolean isToolbarVisible();
+        boolean isTextVisible();
+        String getText();
+    }
 
-  ///////////////////////////////////////////////////////////////////////////////////
-  // Screen ////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Screen ////////////////////////////////////////////////////////////////////////
 
-  /**
-   * Methods offered to VIEW to communicate with PRESENTER
-   */
-  interface ViewToPresenter extends Presenter<PresenterToView> {
-    //void onButtonClicked();
-    void onSayByeBtnClicked();
-    void onBackToHelloBtnClicked();
-  }
+    /**
+     * Methods offered to VIEW to communicate with PRESENTER
+     */
+    interface ViewToPresenter extends Presenter<PresenterToView> {
+        void onSayByeBtnClicked();
+        void onBackToHelloBtnClicked();
+    }
 
-  /**
-   * Required VIEW methods available to PRESENTER
-   */
-  interface PresenterToView extends ContextView {
-    void finishScreen();
-    void hideProgressBar();
-    void showProgressBar();
-    void hideToolbar();
-    void hideText();
-    void showText();
-    void setText(String txt);
-    void setSayByeLabel(String txt);
-    void setBackToHelloLabel(String txt);
-  }
+    /**
+     * Required VIEW methods available to PRESENTER
+     */
+    interface PresenterToView extends ContextView {
+        void finishScreen();
+        void hideProgressBar();
+        void showProgressBar();
+        void hideToolbar();
+        void hideText();
+        void showText();
+        void setText(String txt);
+        void setSayByeLabel(String txt);
+        void setBackToHelloLabel(String txt);
+    }
 
-  /**
-   * Methods offered to MODEL to communicate with PRESENTER
-   */
-  interface PresenterToModel extends Model<ModelToPresenter> {
-    void startHelloGetMessageTask();
+    /**
+     * Methods offered to MODEL to communicate with PRESENTER
+     */
+    interface PresenterToModel extends Model<ModelToPresenter> {
+        void resetGetMessageTask();
+        void startGetMessageTask();
+        boolean isTaskRunning();
+        boolean isTaskFinished();
+        String getText();
+        String getSayByeLabel();
+        String getBackToHelloLabel();
+    }
 
-    boolean isTaskRunning();
+    /**
+     * Required PRESENTER methods available to MODEL
+     */
+    interface ModelToPresenter {
 
-    boolean isTaskFinished();
-
-    String getText();
-    String getSayByeLabel();
-    String getBackToHelloLabel();
-  }
-
-  /**
-   * Required PRESENTER methods available to MODEL
-   */
-  interface ModelToPresenter {
-
-    void onByeGetMessageTaskFinished(String text);
-  }
+        void onGetMessageTaskFinished(String text);
+    }
 
 }

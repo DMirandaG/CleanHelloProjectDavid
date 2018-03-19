@@ -9,17 +9,7 @@
         android:name=".app.MediatorApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".dummy.DummyView"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            -->
-        </activity>
+
 
         <activity
             android:name=".hello.HelloView"
@@ -29,6 +19,14 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name=".bye.ByeView"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
 

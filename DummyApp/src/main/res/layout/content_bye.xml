@@ -11,8 +11,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="es.ulpgc.eite.clean.mvp.sample.hello.HelloView"
-    tools:showIn="@layout/activity_hello">
+    tools:context="es.ulpgc.eite.clean.mvp.sample.bye.ByeView"
+    tools:showIn="@layout/activity_bye">
 
 
     <LinearLayout
@@ -23,7 +23,7 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="100dp"/>
+            android:layout_height="80dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
 
 
             <Button
-                android:id="@+id/btnSayHello"
+                android:id="@+id/btnSayBye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fab_margin"
@@ -42,7 +42,7 @@
 
 
             <Button
-                android:id="@+id/btnGoToBye"
+                android:id="@+id/btnBackToHello"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fab_margin"
@@ -54,20 +54,20 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="100dp"/>
+            android:layout_height="80dp"/>
 
         <ProgressBar
-            android:id="@+id/pbHello"
+            android:id="@+id/pbBye"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="100dp"/>
+            android:layout_height="80dp"/>
 
         <TextView
-            android:id="@+id/txtHello"
+            android:id="@+id/txtBye"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/screen_text"
